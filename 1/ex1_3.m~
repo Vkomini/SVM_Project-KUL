@@ -1,0 +1,11 @@
+clear all;
+load('/media/sumit/DE20EA8120EA5FCF/MyWorkspace/Dropbox/KUL/MAI/SVM/1/iris.mat/iris.mat');
+
+gam=0.1;
+
+[alpha,b] = trainlssvm({X,Y,'c',gam,[],'lin_kernel'});
+%plotlssvm({X,Y,'c',gam,[],'lin_kernel'},{alpha,b});
+
+t=1; degree=3;
+[alpha,b] = trainlssvm({X,Y,'c',gam,[t;degree],'poly_kernel'});
+plotlssvm({X,Y,'c',gam,[t;degree],'poly_kernel'},{alpha,b});

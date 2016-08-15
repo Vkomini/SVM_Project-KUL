@@ -1,0 +1,61 @@
+Uiregress
+
+Datapoints: 20
+
+Linear:
+Execution time :  0.4 seconds
+|w0|^2    : 1871.378014
+Sum beta : 0.000001
+Support Vectors : 10 (50.0%)
+
+-------------------------------
+
+Poly 2:
+Execution time :  0.4 seconds
+|w0|^2    : -10498.491050
+Sum beta : 1.539328
+Support Vectors : 8 (40.0%)
+
+Poly 3:
+Execution time :  0.4 seconds
+|w0|^2    : -8025.008499
+Sum beta : 1.429778
+Support Vectors : 8 (40.0%)
+
+Poly 4:
+Execution time :  0.6 seconds
+|w0|^2    : -11258.889974
+Sum beta : 1.261261
+Support Vectors : 7 (35.0%)
+
+--------------------------------
+
+Gaussian RBF 1:
+Execution time :  0.4 seconds
+|w0|^2    : 1043626.607175
+Sum beta : -172.479025
+Support Vectors : 9 (45.0%)
+
+Gaussian RBF 5:
+Execution time :  0.3 seconds
+|w0|^2    : 9010759.145227
+Sum beta : -1831.135183
+Support Vectors : 7 (35.0%)
+
+Gaussian RBF 10:
+Execution time :  0.3 seconds
+|w0|^2    : 22111297.713907
+Sum beta : -2395.963585
+Support Vectors : 8 (40.0%)
+
+
+Gaussian RBF 50:
+Execution time :  0.3 seconds
+|w0|^2    : 21523709.797022
+Sum beta : -1664.566534
+Support Vectors : 8 (40.0%)
+
+----------------------------------
+
+
+
