@@ -1,8 +1,8 @@
 clear;
 load iris;
 
-gamma = [5 50];
-sigma2 = [0.25 0.75];
+gamma = [0.5 5 50];
+sigma2 = [0.075 0.75 7.5];
 
 mg = max(size(gamma))
 ms = max(size(sigma2))

@@ -14,14 +14,21 @@ sig2=0.1;
 [alpha,b] = trainlssvm({X,Y,'f',gam,sig2,'RBF_kernel'});
 figure, plotlssvm({X,Y,'f',gam,sig2,'RBF_kernel'}, {alpha,b});
 
-%% auto tune (normal)
+%% auto tune (normal) mse
+globalOptFun = 'csa';
+optFun = 'simplex';
+[gam,sig2,cost] = tunelssvm({X,Y,'f',[],[],'RBF_kernel', globalOptFun}, optFun,'crossvalidatelssvm',{10,'mse'})
+[alpha,b] = trainlssvm({X,Y,'f',gam,sig2,'RBF_kernel'});
+figure, plotlssvm({X,Y,'f',gam,sig2,'RBF_kernel'}, {alpha,b});
+
+%% auto tune (normal) mae
 globalOptFun = 'csa';
 optFun = 'simplex';
 [gam,sig2,cost] = tunelssvm({X,Y,'f',[],[],'RBF_kernel', globalOptFun}, optFun,'crossvalidatelssvm',{10,'mae'})
 [alpha,b] = trainlssvm({X,Y,'f',gam,sig2,'RBF_kernel'});
-figure, plotlssvm({X,Y,'f',gam,sig2,'RBF_kernel'}, {alpha,b});
+figure, plotlssvm({X,Y,'f',gam,sig2,'RBF_kernel'}, {alpha,b})
 
-%% Auto tune (robust) mse
+%% Auto tune (robust) Huber mae
 model = initlssvm(X,Y,'f',[],[],'RBF_kernel');
 costFun = 'rcrossvalidatelssvm';
 wFun = 'whuber';
@@ -30,12 +37,32 @@ model = robustlssvm(model);
 figure, plotlssvm(model);
 
 
-%% Auto tune (robust) mae
+%% Auto tune (robust) hampel mae
 model = initlssvm(X,Y,'f',[],[],'RBF_kernel');
 costFun = 'rcrossvalidatelssvm';
-wFun = 'whuber';
+wFun = 'whampel';
 model = tunelssvm(model,'simplex',costFun,{10,'mae'},wFun);
 model = robustlssvm(model);
 figure, plotlssvm(model);
+
+
+%% Auto tune (robust) Logistic mae
+model = initlssvm(X,Y,'f',[],[],'RBF_kernel');
+costFun = 'rcrossvalidatelssvm';
+wFun = 'wlogistic';
+model = tunelssvm(model,'simplex',costFun,{10,'mse'},wFun);
+model = robustlssvm(model);
+figure, plotlssvm(model);
+
+
+%% Auto tune (robust) Myriad mae
+model = initlssvm(X,Y,'f',[],[],'RBF_kernel');
+costFun = 'rcrossvalidatelssvm';
+wFun = 'wmyriad';
+model = tunelssvm(model,'simplex',costFun,{10,'mae'},wFun);
+model = robustlssvm(model);
+figure, plotlssvm(model);
+
+
 
 Fun = {'whampel', 'wlogistic','wmyriad'}

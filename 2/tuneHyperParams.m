@@ -1,4 +1,12 @@
 function params = tuneHyperParams(X,Y)
+% min max mean
+csaGS = [];
+dsGS = [];
+
+csaSimp = [];
+dsSimp = [];
+
+for loop=1:20
 
 params = [];
 
@@ -23,6 +31,15 @@ for i=1:2
         cost_loo = leaveoneout({X,Y,'f',gam,sig2});
         %str = sprintf('Gamma = %lf , Sigma = %lf, Cost = %f, Cross_Val = %f, LeaveOneOut = %f, Time = %f',gam,sig2,cost,cost_crossval, cost_loo, time);
         params = [params; [gam,sig2,cost,cost_crossval, cost_loo, time]];
+        if i==1 && j==1
+            csaGS = [csaGS; [gam,sig2,cost,cost_crossval, cost_loo, time]];
+        elseif i==1 && j==2
+            dsGS = [dsGS; [gam,sig2,cost,cost_crossval, cost_loo, time]];
+        elseif i==2 && j==1
+            csaSimp = [csaSimp; [gam,sig2,cost,cost_crossval, cost_loo, time]];
+        elseif i==2 && j==2
+            dsSimp = [dsSimp; [gam,sig2,cost,cost_crossval, cost_loo, time]];
+        end
         %disp(optFun);
         %disp(globalOptFun);
         %disp(str);
@@ -30,7 +47,7 @@ for i=1:2
         %figure, plotlssvm({X,Y,'f',gam,sig2},{alpha,b});
     end
 end
-
+%{
 t=1;
 for i=1:2
     for j=1:2
@@ -55,3 +72,10 @@ for i=1:2
 end
 
 end
+%}
+end
+
+assignin('base', 'csaGS', csaGS);
+assignin('base', 'dsGS', dsGS);
+assignin('base', 'csaSimp', csaSimp);
+assignin('base', 'dsSimp', dsSimp);

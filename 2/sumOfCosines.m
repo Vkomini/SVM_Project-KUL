@@ -1,7 +1,7 @@
 clc;
 
-X = (-10:0.1:10)';
-Y = cos(X) + cos(2*X) + 0.1.*randn(length(X),1);
+%X = (-10:0.1:10)';
+%Y = cos(X) + cos(2*X) + 0.1.*randn(length(X),1);
 
 Xtrain = X(1:2:length(X));
 Ytrain = Y(1:2:length(Y));
