@@ -8,8 +8,8 @@ Ytrain = Y(1:2:length(Y));
 Xtest = X(2:2:length(X));
 Ytest = Y(2:2:length(Y));
 
-plotSigGam([1 10 100 1000], [0.01 0.1 1], Xtrain, Ytrain, Xtrain, Ytrain);
+%plotSigGam([1 10 100 1000], [0.01 0.1 1], Xtrain, Ytrain, Xtrain, Ytrain);
 
 %tuneHyperParams(Xtrain, Ytrain);
 
-%tuneHyperParamsBayes(Xtrain, Ytrain);
+tuneHyperParamsBayes(Xtrain, Ytrain);

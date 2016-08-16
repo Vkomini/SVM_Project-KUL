@@ -27,7 +27,7 @@ for i=1:2
         %disp(globalOptFun);
         %disp(str);
         [alpha,b] = trainlssvm({X,Y,'f',gam,sig2});
-        figure, plotlssvm({X,Y,'f',gam,sig2},{alpha,b});
+        %figure, plotlssvm({X,Y,'f',gam,sig2},{alpha,b});
     end
 end
 
@@ -48,7 +48,7 @@ for i=1:2
         
         disp(globalOptFun);
         disp(optFun);
-        str = sprintf('Gamma = %.3f , Sigma = %.3f, Cost = %f, Cross_Val = %f, LeaveOneOut = %f, Time = %f',params(t,1),params(t,2),params(t,3),params(t,4), params(t,5), params(1,6));
+        str = sprintf('Gamma = %.3f , Sigma = %.3f, Cost = %f, Cross_Val = %f, LeaveOneOut = %f, Time = %f',params(t,1),params(t,2),params(t,3),params(t,4), params(t,5), params(t,6));
         disp(str);
         t=t+1;
     end

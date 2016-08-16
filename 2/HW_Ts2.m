@@ -1,10 +1,11 @@
 clear
-load('/media/sumit/DE20EA8120EA5FCF/MyWorkspace/KUL/MAI/SVM/2/santafe.mat')
+%load('/media/sumit/DE20EA8120EA5FCF/MyWorkspace/KUL/MAI/SVM/2/santafe.mat')
+load('santafe.mat')
 
 %zmean = mean(Z);
 %Z = (Z-zmean)/std(Z);
 
-test_size = 100;
+test_size = 300;
 Ztrain = Z(1:length(Z)-test_size);
 Ztest = Z(length(Z)-test_size+1:end);
 
@@ -17,7 +18,7 @@ Ztest = (Ztest-zmean)/std(Ztest);
 
 Xt = Ztest;
 
-order = 50;
+order = 20;
 Xu = windowize(Ztrain,1:(order+1));
 Ytra = Xu(:,end);
 Xtra = Xu(:,1:order);
@@ -30,7 +31,7 @@ optFun = 'simplex';
 
 Xs = Ztrain(end-order+1:end,1);
 
-prediction = predict({Xtra, Ytra, 'f', gam, sig2, 'RBF_kernel'}, Xs, 100);
+prediction = predict({Xtra, Ytra, 'f', gam, sig2, 'RBF_kernel'}, Xs, test_size);
 figure, plot([prediction Xt]);
 legend('Predict', 'Original');
 cost
