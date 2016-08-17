@@ -7,7 +7,7 @@ load two3drings;        % load the toy example
 perm=randperm(N);   % shuffle the data
 X=X(perm,:);
 
-sig2=0.005;              % set the kernel parameters
+sig2=0.001;              % set the kernel parameters
 
 
 K=kernel_matrix(X,'RBF_kernel',sig2);   %compute the RBF kernel (affinity) matrix

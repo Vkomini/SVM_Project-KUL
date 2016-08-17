@@ -92,7 +92,7 @@ plot(samplesyin(:,1),samplesyin(:,2),'o');hold on;
 plot(samplesyang(:,1),samplesyang(:,2),'o');
 %contour(Xax,Yax,reshape(proj_lin(:,1),length(Yax),length(Xax)));
 
-xdl=dat*U_lin(:,1:2)*U_lin(:,1:2)';
+xdl=dat*U_lin(:,1)*U_lin(:,1)';
 plot(xdl(:,1),xdl(:,2),'r+');
 
 title('Linear PCA - Denoised data points using the first principal component');

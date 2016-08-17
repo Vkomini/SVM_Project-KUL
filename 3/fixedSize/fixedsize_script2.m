@@ -1,13 +1,13 @@
-clear
+%clear
 close all
 
 
 %
 % make a subset
 %
-X = 3.*randn(25,2);
-ssize = 3;
-sig2 = 1;
+%X = 3.*randn(500,2);
+ssize = 10;
+sig2 = 100;
 indices_subset = 1:ssize;
 
   

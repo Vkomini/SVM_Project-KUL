@@ -1,8 +1,8 @@
 clear all; clc;
 
-%load('./ripley.mat/ripley.mat');
+load('./ripley.mat/ripley.mat');
 %load('./breast.mat/breast.mat');
-load('./diabetes.mat/diabetes.mat')
+%load('./diabetes.mat/diabetes.mat')
 
 Xt=trainset;
 Yt=labels_train;
@@ -21,7 +21,7 @@ Yval = Yt(idx(0.8*length(Xt)+1:length(Xt)));
 [gam,sig2,cost] = tunelssvm({Xtrain,Ytrain,'c',[],[],'lin_kernel','preprocess', 'csa'}, 'simplex','crossvalidatelssvm',{10,'misclass'});
 
 [alpha,b] = trainlssvm({Xtrain,Ytrain,'c',gam,sig2,'lin_kernel', 'preprocess'});
-%plotlssvm({Xtrain,Ytrain,'c',gam,sig2,'lin_kernel'},{alpha,b});
+plotlssvm({Xtrain,Ytrain,'c',gam,sig2,'lin_kernel'},{alpha,b});
 
 [estYval L_lin_val]= simlssvm({Xtrain,Ytrain,'c',gam,sig2,'lin_kernel','preprocess'}, {alpha,b},Xval);
 lin_val_err = (sum(estYval~=Yval)/length(Yval))*100;
@@ -35,7 +35,7 @@ lin_test_err = (sum(estYval~=Y)/length(Y))*100;
 [gam,sig2,cost] = tunelssvm({Xtrain,Ytrain,'c',[],[],'RBF_kernel', 'csa'}, 'simplex','crossvalidatelssvm',{10,'misclass'});
 
 [alpha,b] = trainlssvm({Xtrain,Ytrain,'c',gam,sig2,'RBF_kernel'});
-%plotlssvm({Xtrain,Ytrain,'c',gam,sig2,'lin_kernel'},{alpha,b});
+plotlssvm({Xtrain,Ytrain,'c',gam,sig2,'lin_kernel'},{alpha,b});
 
 [estYval L_rbf_val]= simlssvm({Xtrain,Ytrain,'c',gam,sig2,'RBF_kernel'}, {alpha,b},Xval);
 rbf_val_err = (sum(estYval~=Yval)/length(Yval))*100;

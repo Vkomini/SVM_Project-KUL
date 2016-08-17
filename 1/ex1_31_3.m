@@ -9,8 +9,8 @@ Ytrain = Y(idx(1:80));
 Xval = X(idx(81:100),:);
 Yval = Y(idx(81:100));
 
-model = {X,Y,'c',[],[],'RBF_kernel','ds'};
-[gam,sig2,cost] = tunelssvm(model,'gridsearch', 'crossvalidatelssvm',{10,'misclass'});
+model = {X,Y,'c',[],[],'RBF_kernel','csa'};
+[gam,sig2,cost] = tunelssvm(model,'simplex', 'crossvalidatelssvm',{10,'misclass'});
 
 cv_performance = crossvalidate({X,Y,'c',gam,sig2,'RBF_kernel'}, 10,'misclass');
 loo_performance = leaveoneout({X,Y,'c',gam,sig2,'RBF_kernel'},'misclass');

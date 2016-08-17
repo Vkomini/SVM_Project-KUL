@@ -1,8 +1,8 @@
-clear
+%clear
 close all
 
 
-X = 3.*randn(100,2);
+%X = 3.*randn(100,2);
 ssize = 10;
 sig2 = 10;
 subset = zeros(ssize,2);
